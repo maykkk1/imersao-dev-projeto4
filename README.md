@@ -1,5 +1,5 @@
 # DESAFIO 4 e 5 da imersão _DEV 
-## Aluraflix
+## PROJETO ALURAFLIX
 
 ### Tasks do Desafio
 
