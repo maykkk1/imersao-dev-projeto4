@@ -132,6 +132,7 @@ form button:hover {
 }
 
 .game-card {
+  position: relative;
   height: 400px;
   width: 260px;
   background-color: rgba(0, 0, 0, 0.534);
@@ -144,6 +145,30 @@ form button:hover {
   border: 2px solid rgba(255, 255, 255, 0.466);
   overflow: hidden;
 }
+
+.game-card button {
+  position: absolute;
+  bottom: 15px;
+  margin: 0 auto;
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background-color:rgb(179, 4, 4);
+	border-radius:15px;
+	border:2px solid #333029;
+	display:inline-block;
+	cursor:pointer;
+	color:white;
+	font-family:Arial;
+	font-size:14px;
+	font-weight:bold;
+	padding:12px 16px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+
+.game-card button:hover {
+	background-color:rgb(201, 60, 60);
+}
+
 
 .img-wrapper {
   width: 100%;

@@ -49,28 +49,43 @@ const myGamesList = [
   },
 ];
 
-const yourFavoriteGamesList = [];
+let yourFavoriteGamesList = [];
+let id = 0;
 
-const createCard = (containerId, name, imgUrl) => {
-  const cardsContainer = document.getElementById(`${containerId}`);
-  const cardDiv = document.createElement("div");
-  cardDiv.classList.add("game-card");
-  const cardTitle = document.createElement("h2");
-  cardTitle.innerHTML = name;
-  cardDiv.appendChild(cardTitle);
-  const imgWrapper = document.createElement("div");
-  imgWrapper.classList.add("img-wrapper");
-  imgWrapper.innerHTML = `<img src="${imgUrl}" alt="">`;
-  cardDiv.appendChild(imgWrapper);
-  cardsContainer.appendChild(cardDiv);
+const MyFavoriteGamesContainer = document.getElementById("myFavoriteGames");
+const YourFavoriteGamesContainer = document.getElementById("yourFavoriteGames");
+
+const createCard = (cardContainer, containerId, name, imgUrl, cardId) => {
+  if (containerId === "myFavoriteGames") {
+    cardContainer.innerHTML += 
+    `<div class="game-card">
+     <h2>${name}</h2>
+     <div class="img-wrapper">
+     <img src="${imgUrl}" alt="" />
+     </div>
+     </div>
+    `;
+  } else {
+    cardContainer.innerHTML += 
+    `<div class="game-card">
+     <h2>${name}</h2>
+     <div class="img-wrapper">
+     <img src="${imgUrl}" alt="" />
+     </div>
+     <button id=${cardId} onclick="deleteCard(event)">Excluir</button>
+     </div>
+    `;
+  }
 };
 
+
+
 myGamesList.forEach((element) => {
-  createCard("myFavoriteGames", element.titulo, element.imgUrl);
+  createCard(MyFavoriteGamesContainer, "myFavoriteGames", element.titulo, element.imgUrl);
 });
 
 yourFavoriteGamesList.forEach((element) => {
-  createCard("yourFavoriteGames", element.titulo, element.imgUrl);
+  createCard(YourFavoriteGamesContainer, "yourFavoriteGames", element.titulo, element.imgUrl);
 });
 
 const sendGameBtn = document.getElementById("sendGame");
@@ -83,11 +98,30 @@ const addYourFavoriteGames = (e) => {
   e.preventDefault();
   const gameTitle = document.getElementById("gameTitlePicker").value;
   const imgUrl = document.getElementById("imgUrlPicker").value;
-  const game = { titulo: gameTitle, imgUrl: imgUrl };
-  yourFavoriteGamesList.push(game);
+  const game = { titulo: gameTitle, imgUrl: imgUrl, id: id };
   if (gameTitle.length > 0 && imgUrl.length > 0) {
-    createCard("yourFavoriteGames", gameTitle, imgUrl);
+    YourFavoriteGamesContainer.innerHTML = ""
+    yourFavoriteGamesList.push(game);
+    yourFavoriteGamesList.forEach((element) => {
+      createCard(YourFavoriteGamesContainer, "yourFavoriteGames", element.titulo, element.imgUrl, element.id);
+    });
   }
   document.getElementById("gameTitlePicker").value = "";
   document.getElementById("imgUrlPicker").value = "";
+  id++
+};
+
+
+
+const deleteCard = (e) => {
+  e = e || window.event;
+  var target = e.target || e.srcElement;
+  YourFavoriteGamesContainer.innerHTML = "";
+  yourFavoriteGamesList = yourFavoriteGamesList.filter((element) => {
+    console.log(element.id, target.id)
+    return element.id != target.id;
+  });
+  yourFavoriteGamesList.forEach((element) => {
+    createCard(YourFavoriteGamesContainer, "yourFavoriteGames", element.titulo, element.imgUrl, element.id);
+  });
 };
