@@ -1,6 +1,7 @@
 # DESAFIO 4 e 5 da imersão _DEV 
+## Aluraflix
 
-## Tasks do Desafio
+### Tasks do Desafio
 
 - [x] Escolher o seu tema preferido para adaptar ao nosso código, ou seja, ao invés de filmes pode ser uma lista de animes, HQ's, cursos, capas de jogos...
 - [x] Tentar implementar outras versões da estrutura de repetição que fizemos com for, como por exemplo com foreach ou while
